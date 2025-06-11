@@ -224,6 +224,13 @@ struct MPU6050 {
 			processGyroSample(xyz, GyrTs);
 		}
 	}
+
+	void deinit() {
+		i2c.writeReg(
+			MPU6050_RA_PWR_MGMT_1,
+			0xc0
+		);  // Reset the device and put it into low power mode
+	}
 };
 
 }  // namespace SlimeVR::Sensors::SoftFusion::Drivers

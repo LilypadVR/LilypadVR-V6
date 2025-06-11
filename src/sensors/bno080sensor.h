@@ -71,6 +71,9 @@ public:
 		// For BNO, just assume it's there if the sensorOnBus check succeeded
 		return SensorTypeID::BNO085;
 	}
+	void setFlag(uint16_t flagId, bool state) override final;
+	void deinit() final;
+	bool isAtRest() final;
 
 protected:
 	// forwarding constructor

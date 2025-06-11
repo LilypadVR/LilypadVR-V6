@@ -477,6 +477,8 @@ public:
 			return false;
 		}
 	}
+	void deinit() final { m_sensor.deinit(); }
+	bool isAtRest() final { return m_fusion.getRestDetected(); }
 };
 
 }  // namespace SlimeVR::Sensors

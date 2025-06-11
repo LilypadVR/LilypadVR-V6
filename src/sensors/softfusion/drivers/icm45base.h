@@ -238,6 +238,8 @@ struct ICM45Base {
 			}
 		}
 	}
+
+	void deinit() { softResetIMU(); }
 };
 
 };  // namespace SlimeVR::Sensors::SoftFusion::Drivers

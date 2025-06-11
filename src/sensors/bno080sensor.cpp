@@ -126,6 +126,10 @@ void BNO080Sensor::motionSetup() {
 	// SH2_CAL_ON_TABLE | SH2_CAL_PLANAR);
 
 	imu.enableStabilityClassifier(500);
+
+#ifdef BUTTON_AUTO_SLEEP_TIME_SECONDS
+	imu.enableStabilityClassifier(500);
+#endif
 	// enableRawGyro only for reading the Temperature every 1 second (0.5°C steps)
 	imu.enableRawGyro(1000);
 
@@ -374,6 +378,10 @@ void BNO080Sensor::startCalibration(int calibrationType) {
 	// it's always enabled except accelerometer
 	// that is disabled 30 seconds after startup
 }
+
+void BNO080Sensor::deinit() { imu.softReset(); }
+
+bool BNO080Sensor::isAtRest() { return imu.getStabilityClassifier() == 1; }
 
 bool BNO080Sensor::isFlagSupported(SensorToggles toggle) const {
 	return toggle == SensorToggles::MagEnabled;
